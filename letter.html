@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>চিঠি </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    /* soft pink background with floating hearts + sparkles */
+    .bg-hearts {
+      background: radial-gradient(circle at top, #ffe8f7, #ffd4ec 40%, #fff0f8 70%, #ffd6eb 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg-hearts::before,
+    .bg-hearts::after {
+      content: "❤ ✧ ❤ ✧ ❤ ✧ ❤ ✧";
+      position: absolute;
+      font-size: 18px;
+      opacity: 0.13;
+      color: #ff7da7;
+    }
+
+    .bg-hearts::before {
+      top: 14%;
+      left: 4%;
+      transform: rotate(-18deg);
+    }
+
+    .bg-hearts::after {
+      bottom: 8%;
+      right: 5%;
+      transform: rotate(15deg);
+    }
+
+    /* subtle glow card */
+    .note-card {
+      box-shadow:
+        0 18px 45px rgba(255, 145, 191, 0.35),
+        0 0 0 1px rgba(255, 188, 214, 0.55);
+      backdrop-filter: blur(3px);
+    }
+
+    /* top tiny gradient bar */
+    .top-bar-gradient {
+      background: linear-gradient(90deg, #ffb6da, #ff8bc1, #ffb6da);
+    }
+
+    /* custom button active state from JS */
+    .nav-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: radial-gradient(circle at top, rgba(255, 182, 218, 0.8), transparent 55%);
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .nav-btn:hover::before {
+      opacity: 1;
+    }
+
+    .nav-btn.active-btn {
+      background: linear-gradient(90deg, #ffe6f4, #ffd0ee);
+      border-color: #ff8bbf;
+      box-shadow:
+        0 0 0 2px rgba(255, 139, 191, 0.35),
+        0 6px 15px rgba(255, 143, 195, 0.28);
+      color: #cc517f;
+    }
+
+    /* small fade-in */
+    .fade-in {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-hearts min-h-screen flex items-center justify-center p-4">
+
+  <!-- Outer fake-window card -->
+  <div class="max-w-lg w-full bg-pink-50/90 border-2 border-pink-200 rounded-3xl note-card px-4 py-6 sm:px-8 sm:py-8 relative fade-in">
+
+    <!-- tiny glowing top strip -->
+    <div class="top-bar-gradient h-1.5 w-24 rounded-full mx-auto mb-4"></div>
+
+    <!-- top mini browser bar -->
+    <div class="w-full rounded-2xl border border-pink-200 bg-pink-100/70 px-4 py-3 flex items-center justify-between mb-4">
+      <div class="flex items-center space-x-2 text-pink-500">
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white shadow-sm text-xs">
+          🎂
+        </span>
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white shadow-sm text-xs">
+          💌
+        </span>
+      </div>
+      <span class="text-[11px] text-pink-500 font-medium">
+        ছোট্ট একটু উপহার 
+      </span>
+    </div>
+
+    <!-- inner content card -->
+    <div class="rounded-3xl border border-pink-200 bg-white/95 px-5 py-6 sm:px-8 sm:py-8 shadow-inner">
+      <!-- title + subtitle -->
+      <div class="text-center mb-5">
+        <p class="text-[11px] tracking-[0.3em] uppercase text-pink-300 mb-1">
+          মারজিয়া জাহান তুবা😽
+        </p>
+        <h1 id="note-title" class="text-center text-xl sm:text-2xl font-semibold text-pink-500">
+          আমার প্রিয়তমা🥰
+        </h1>
+        <p class="mt-1 text-[11px] text-pink-400">
+          খুশিতো নাকি ? তোমার জন্যই সব কিছু 😘 ✨
+        </p>
+      </div>
+
+      <div class="flex">
+        <!-- left vertical line + heart -->
+        <div class="w-10 flex justify-center">
+          <div class="relative h-40 sm:h-44 flex items-start">
+            <div class="w-[2px] bg-pink-200 rounded-full h-full mx-auto"></div>
+            <div class="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-pink-100 border border-pink-200 flex items-center justify-center shadow-sm">
+              <span class="text-pink-400 text-sm">♡</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- text -->
+        <div class="flex-1 pl-3 sm:pl-6 text-[13px] sm:text-sm leading-relaxed text-gray-700">
+          <p id="note-body">
+           প্রিয়</p>
+তোমার এই বিশেষ দিনে, আমি তোমাকে জানাতে চাই...
+
+আমার দেখা সবচেয়ে অসাধারণ মানুষ তুমি।
+
+তোমার হাসি আমার সবচেয়ে দুঃখের দিনগুলোকেও উজ্জ্বল করে তোলে।
+
+তোমার হাসি আমার কাছে পৃথিবীর সবচেয়ে প্রিয় শব্দ।
+
+তোমার ভালোবাসা আমাকে শক্তি ও আনন্দ দেয়।
+
+আমার জীবনে তোমাকে পেয়ে আমি অত্যন্ত কৃতজ্ঞ।
+
+এই বছরটি তোমার প্রাপ্য সমস্ত আনন্দ নিয়ে আসুক।
+
+তুমি এই পৃথিবী এবং তার চেয়েও বেশি কিছুর যোগ্য।
+
+শুভ জন্মদিন,প্রিয় ! 🥰🤍💓💞
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- heart divider -->
+    <div class="mt-6 text-center text-[11px] tracking-[0.25em] text-pink-300">
+      ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥
+    </div>
+
+    <!-- navigation buttons -->
+    <div class="mt-4 flex items-center justify-center space-x-3 sm:space-x-4">
+      <button
+        class="nav-btn active-btn px-5 py-1.5 sm:px-6 sm:py-2 rounded-full border border-gray-300 bg-white text-gray-700 text-xs sm:text-sm shadow-sm transition transform hover:-translate-y-[1px]"
+        data-key="heart">
+        ❤️ নাম
+      </button>
+      <button
+        class="nav-btn px-5 py-1.5 sm:px-6 sm:py-2 rounded-full border border-gray-300 bg-white text-gray-700 text-xs sm:text-sm shadow-sm transition transform hover:-translate-y-[1px]"
+        data-key="us">
+        ✨  তুমি
+      </button>
+      <button
+        class="nav-btn px-5 py-1.5 sm:px-6 sm:py-2 rounded-full border border-gray-300 bg-white text-gray-700 text-xs sm:text-sm shadow-sm transition transform hover:-translate-y-[1px]"
+        data-key="love">
+        💌 ভিন্ন নাম
+      </button>
+    </div>
+
+    <!-- tiny footer text -->
+    <p class="mt-5 text-center text-[11px] text-pink-400">
+      (সূচনা 🎀 )
+    </p>
+
+    <div class="mt-1 text-center text-xs text-pink-300">
+      একসাথে পড়ো   ♡
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const buttons = document.querySelectorAll(".nav-btn");
+    const titleEl = document.getElementById("note-title");
+    const bodyEl = document.getElementById("note-body");
+
+    // Anniversary-themed letters
+    const contentMap = {
+      heart: {
+        title: " ওওরল্ফ" 😁 💖`
+      },
+      us: {
+        title: "তুমি হে তুমি",
+        body: `হেল্ল😑 🤍`
+      },
+      love: {
+        title: "hi 😑",
+        body: `helllo 😁🥰 🎂💕`
+      }
+    };
+
+    // initial text (Heart tab)
+    titleEl.textContent = contentMap.heart.title;
+    bodyEl.textContent = contentMap.heart.body;
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // active state for buttons
+        buttons.forEach(b => b.classList.remove("active-btn"));
+        btn.classList.add("active-btn");
+
+        // switch letter
+        const key = btn.dataset.key;
+        const content = contentMap[key];
+        if (content) {
+          titleEl.textContent = content.title;
+          bodyEl.textContent = content.body;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
